@@ -19,7 +19,7 @@ d () {
 		;;
 	"ng")
 		IMAGE="trion/ng-cli:latest"
-		COMMAND="sh -c ng set --global packageManager=yarn; ng $@"
+		COMMAND="ng $@"
 		PARAMS="--volume $PWD:/app --volume $HOME/.cache/yarn:/tmp/.cache/yarn"
 		;;
 	"ng-serve")
@@ -66,7 +66,7 @@ d () {
 		echo "These aliases are available:"
 		echo "  composer ...     Runs composer"
 		echo "  laravel new ...  Runs the laravel installer"
-		echo "  ng ...           Runs angular cli, with yarn"
+		echo "  ng ...           Runs angular cli"
 		echo "  ng-serve ...     Serves angular project with angular cli"
 		echo "  npm ...          Runs npm"
 		echo "  rancherize ...   Runs rancherize"
