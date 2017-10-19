@@ -1,4 +1,3 @@
-# d runs various docker images
 d () {
 	ALIAS=$1
 	shift 1
@@ -52,6 +51,13 @@ d () {
 		done
 		return 0
 		;;
+	"--purge")
+		echo "Purging all unused images and container"
+		docker rmi "$(docker images -f dangling=true -q)"
+		docker rm "$(docker ps --no-trunc -aq)"
+		return $?
+		;;
+
 	*)
 		echo "docker alias script"
 		echo
@@ -68,6 +74,8 @@ d () {
 		echo
 		echo "We provide some maintenance stuff too:"
 		echo "  --upgrade        Upgrades all used docker container"
+		echo "  --purge          Purges unused images and container"
+		echo
 		return 1
 		;;
 	esac
