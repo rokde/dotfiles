@@ -30,7 +30,7 @@ d () {
 	"composer")
 		IMAGE="composer:latest"
 		COMMAND="$@"
-		PARAMS="--tty --volume $PWD:/app --volume $SSH_AUTH_SOCK:/ssh-auth.sock --env SSH_AUTH_SOCK=/ssh-auth.sock"
+		PARAMS="--tty --volume $PWD:/app --volume $HOME/.ssh:$HOME/.ssh:ro --volume $SSH_AUTH_SOCK:/ssh-auth.sock --env SSH_AUTH_SOCK=/ssh-auth.sock"
 		;;
 	"laravel")
 		IMAGE="composer:latest"
