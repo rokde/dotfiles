@@ -6,8 +6,6 @@ d () {
         *)          MACHINE="UNKNOWN"
     esac
 
-    shift 1
-
     ALIAS=$1
     shift 1
     
@@ -37,6 +35,11 @@ d () {
         COMMAND="ng serve -host 0.0.0.0 $@"
         PARAMS="--volume $PWD:/app -p 127.0.0.1:4200:4200"
         ;;
+    "php")
+    	IMAGE="php:7.1-cli"
+    	COMMAND="php $@"
+    	PARAMS="--tty --volume $PWD:/usr/src/myapp -w /usr/src/myapp"
+    	;;
     "composer")
         IMAGE="composer:latest"
         COMMAND="$@"
@@ -58,7 +61,7 @@ d () {
     
     "--upgrade")
         echo "Upgrading all docker images"
-        IMAGES="node:latest trion/ng-cli:latest composer:latest ipunktbs/rancherize:2-stable"
+        IMAGES="node:latest trion/ng-cli:latest composer:latest ipunktbs/rancherize:2-stable php:7.1-cli"
         for image in $IMAGES; do
             docker pull $image
         done
@@ -78,6 +81,7 @@ d () {
         echo
         echo "These aliases are available:"
         echo "  composer ...     Runs composer"
+        echo "  php ...          Runs php 7.1 cli"
         echo "  laravel new ...  Runs the laravel installer"
         echo "  ng ...           Runs angular cli"
         echo "  ng-serve ...     Serves angular project with angular cli"
