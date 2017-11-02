@@ -43,7 +43,7 @@ d () {
     "composer")
         IMAGE="composer:latest"
         COMMAND="$@"
-        PARAMS="--tty --volume $PWD:/app --volume $SSH_AUTH_SOCK:/ssh-auth.sock --env SSH_AUTH_SOCK=/ssh-auth.sock"
+        PARAMS="--tty --volume $PWD:/app --volume $SSH_AUTH_SOCK:/ssh-auth.sock --volume $HOME/.ssh:$HOME/.ssh:ro --env SSH_AUTH_SOCK=/ssh-auth.sock"
         if [[ "$MACHINE" == "mac" ]]; then
             PARAMS="--tty --volume $PWD:/app"
         fi
